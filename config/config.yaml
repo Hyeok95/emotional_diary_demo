@@ -1,9 +1,0 @@
-openai:
-  api_key: ""
-
-huggingface:
-  access_token: ""
-
-backend:
-  host: localhost
-  port: 8999

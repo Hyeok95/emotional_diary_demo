@@ -5,7 +5,6 @@ import os
 
 # Hugging Face Token 설정
 hf_token = os.environ.get(config["huggingface"]["access_token"])
-# hf_token = os.environ.get("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")
 
 # 사용할 모델의 HuggingFace 경로 매핑
 SLM_MODEL_CONFIG = {
