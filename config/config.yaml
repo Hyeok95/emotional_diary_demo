@@ -1,0 +1,10 @@
+openai:
+  api_key: ""
+
+
+huggingface:
+  access_token: ""
+
+backend:
+  host:
+  port: 8991
