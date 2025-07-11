@@ -23,6 +23,16 @@ selected_label = st.sidebar.selectbox("사용할 모델을 선택하세요", mod
 selected_model = model_keys[model_labels.index(selected_label)]
 st.sidebar.markdown(f"**선택된 모델:** `{selected_model}`")
 
+# 🚩 기분 상태 선택 (공통)
+st.markdown("### 오늘의 기분 상태를 먼저 선택해주세요!")
+mood = st.radio(
+    "오늘의 기분 상태",
+    options=["좋음", "보통", "나쁨"],
+    index=1,
+    horizontal=True,
+    key="mood"
+)
+
 tab1, tab2 = st.tabs(["텍스트 입력", "마이크로 음성 입력"])
 
 with tab1:
@@ -32,7 +42,7 @@ with tab1:
         with st.spinner("분석 중..."):
             resp = requests.post(
                 f"{API_BASE}/analyze",
-                json={"content": diary, "model": selected_model},
+                json={"content": diary, "model": selected_model, "mood": mood},
                 verify=False
             )
             if resp.status_code == 200:
@@ -69,7 +79,7 @@ with tab2:
             with st.spinner("감정 분석 중..."):
                 resp = requests.post(
                     f"{API_BASE}/analyze",
-                    json={"content": st.session_state.voice_text, "model": selected_model},
+                    json={"content": st.session_state.voice_text, "model": selected_model, "mood": mood},
                     verify=False
                 )
                 if resp.status_code == 200:

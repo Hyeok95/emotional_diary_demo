@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.post("/analyze", response_model=DiaryResponse)
 def analyze(req: DiaryRequest):
-    emotion, feedback, therapy = analyze_diary(req.content, model=req.model)
+    emotion, feedback, therapy = analyze_diary(req.content, model=req.model, mood=getattr(req, "mood", None))
     return DiaryResponse(emotion=emotion, feedback=feedback, therapy=therapy)
 
 @app.post("/stt")
